@@ -15,12 +15,19 @@ class ViewController: UIViewController {
     
     @IBAction func btnSubmit(_ sender: Any) {
         var username = usernameTextField.text
+        print(username!)
         welcomeLabel.text = "Welcome " + username!
         welcomeLabel.textColor = UIColor.magenta
        
         secondViewController = self.storyboard?.instantiateViewController(withIdentifier: "SecondViewController") as! (SecondViewController)
-        self.navigationController?.pushViewController(secondViewController!, animated: true)
-        //self.navigationController?.present(secondViewController!, animated: true)
+        
+       // secondViewController?.firstNameLabel.text = username!         //does not work
+        
+        secondViewController?.name = username!  //2. Assign data to name property on instance of svc
+        self.navigationController?.pushViewController(secondViewController!, animated: true)    
+        
+        /*var thirdViewController = self.storyboard?.instantiateViewController(withIdentifier: "ThirdViewController") as? ThirdViewController
+    self.navigationController?.present(thirdViewController!, animated: true)*/
     }
     
     //view life cycle
@@ -43,5 +50,8 @@ class ViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         print("First View Will Disappear method called" )
+    }
+    override func didReceiveMemoryWarning() {
+        print("did receive memory warning")
     }
 }

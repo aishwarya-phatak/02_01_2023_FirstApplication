@@ -10,12 +10,20 @@ import UIKit
 class SecondViewController: UIViewController {
 
     @IBOutlet weak var firstNameLabel: UILabel!
+    var name : String = ""          //1. create property name
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        firstNameLabel.text = "Bitcode"
+        navigationItem.hidesBackButton = true
+        firstNameLabel.text = name      //3. assign name to text property of label
         print("Second View did load method is called")
     }
+    
+    @IBAction func btnBackToFirstVC(_ sender: Any) {
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         print("Second View will Appear method is called")
     }
